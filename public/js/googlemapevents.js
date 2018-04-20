@@ -20,9 +20,9 @@ function myMap() {
   window.bounds = new google.maps.LatLngBounds();
   var mapCanvas = document.getElementById("gmap-list");
   var mapOptions = {
-    center: new google.maps.LatLng(35.91449,-79.05273,6),
-    scaleControl: false,
-    scrollwheel: false,
+    center: new google.maps.LatLng(35.9120,-79.0537,7),
+    scaleControl: true,
+    scrollwheel: true,
     mapTypeControl: false,
     overviewMapControl: false,
     rotateControl: true,
@@ -130,7 +130,7 @@ function myMap() {
     });
   });
 
-  googleMap.setZoom(15);
+  googleMap.setZoom(20);
   }
   // SCRR  and SECC left off for now, pending media
   googleMap.overlayMapTypes.insertAt(

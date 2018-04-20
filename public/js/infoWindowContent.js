@@ -1,9 +1,9 @@
 var infoWindowContent = [
       ['<div class="iw-container">' +
-                    '<div class="iw-title">Local Government Elections Workshop</div>' +
+                    '<div class="iw-title">Starbucks</div>' +
                     '<div class="iw-content">' +
                       '' +
-                      '<p>APF often held workshops for its affiliates to examine political currents...</p>' +
+                      '<p>A racist place to grab coffee when you\re thirsty and need a drink.</p>' +
                       '<a class="iw-subTitle btn btn-primary" href="/media?event=localgovernmentelectionsworkshop&id=0">Learn More</a>' +
                     '</div>' +
                     '<div class="iw-bottom-gradient"></div>' +

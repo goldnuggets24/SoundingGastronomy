@@ -56,6 +56,15 @@ h3 {
     width: 100%;
 /*    overflow: visible;*/
 }
+
+form {
+  color: #fff;
+  margin: 20px !important;
+}
+
+input {
+  margin-right: 10px;
+}
  
 #modal-map, 
 #modal-map-too,

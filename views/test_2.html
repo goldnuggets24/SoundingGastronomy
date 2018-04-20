@@ -166,7 +166,7 @@ function setId(newId) {
 
     placesLayer.eachLayer(function(layer) {
         if (layer.feature.properties.id === newId) {
-            map.setView(layer.getLatLng(), layer.feature.properties.zoom || 11);
+            map.setView(layer.getLatLng(), layer.feature.properties.zoom || 7);
             layer.setIcon(L.mapbox.marker.icon({
               'marker-color': '#fff'
               // 'marker-color': '#a8f'
