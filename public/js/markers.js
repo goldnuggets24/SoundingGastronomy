@@ -1,6 +1,6 @@
   window.markers = [
       ['Local Government Elections Workshop',35.9140,-79.0537,20],
-      ['Orlando East March', -26.243254,27.923966,20,50],
+      ['Orlando East March', 35.9140,-79.0538,20],
       ['Protea South March', -26.284604,27.8435,-30,46],
       ['Alex Peoples Inspection', -26.1057789,28.0644572,20,50],
       ['SCR March', -26.2515141,27.854085,20,50],

@@ -29,6 +29,7 @@ h3 {
 #bg_intro {
 	color: #000000;
 	padding: 10px;
+  visibility: visible !important;
 }
   
 #controls {
@@ -57,13 +58,17 @@ h3 {
 /*    overflow: visible;*/
 }
 
-form {
+.form {
   color: #fff;
-  margin: 20px !important;
+  clear: both;
+  float: left;
+  padding-left: 16px;
 }
 
 input {
-  margin-right: 10px;
+  margin: 5px 0;
+  clear: left;
+  float: left;
 }
  
 #modal-map, 
@@ -241,15 +246,6 @@ body {
 #map-canvas img {
   max-width: none !important;
 }
-.gm-style-iw {
-  width: 350px !important;
-  top: 15px !important;
-  left: 0px !important;
-  background-color: #fff;
-  box-shadow: 0 1px 6px #000;
-  border: 1px solid rgba(0,0,0,0.45);
-  border-radius: 2px 2px 10px 10px;
-}
 .iw-container {
   margin-bottom: 10px;
 }
@@ -383,13 +379,6 @@ body { font-family: sans-serif; }
 @media (min-width: 768px) { #wrapper.toggled {padding-left: 220px !important;}}
 
 .gallery-pane-toggle-button-container {position: absolute; top: 0;}
-
-.gm-style div div div {
-    font-size: 11px !important;
-    font-weight: bold !important;
-    letter-spacing: 1px !important;
-    text-shadow: 0px 2px 0px rgb(31, 29, 29);
-}
 
 /*Media Page*/
 

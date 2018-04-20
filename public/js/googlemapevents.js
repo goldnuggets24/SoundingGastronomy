@@ -1,139 +1,168 @@
-function CoordMapType(tileSize) {
-  this.tileSize = tileSize;
+function xmlParse(str) {
+    if (typeof ActiveXObject != 'undefined' && typeof GetObject != 'undefined') {
+        var doc = new ActiveXObject('Microsoft.XMLDOM');
+        doc.loadXML(str);
+        return doc;
+    }
+
+    if (typeof DOMParser != 'undefined') {
+        return (new DOMParser()).parseFromString(str, 'text/xml');
+    }
+
+    return createElement('div', null);
 }
-// customize satellite image background color
-CoordMapType.prototype.getTile = function(coord, zoom, ownerDocument) {
-  var div = ownerDocument.createElement('div');
-//  div.innerHTML = coord;
-  div.style.width = this.tileSize.width + 'px';
-  div.style.height = this.tileSize.height + 'px';
-  // div.style.backgroundColor = '#333333';
-  $(div).css('background','rgba(128,128,128,.4)');
-  div.style.fontSize = '10';
-  div.style.borderStyle = 'solid';
-  div.style.borderWidth = '0px';
-  div.style.borderColor = '#AAAAAA';
-  return div;
+
+function load() {
+  var infoWindow = new google.maps.InfoWindow();
+  var customIcons = {
+    monumento: {
+        icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png'
+    },
+    hotel: {
+        icon: 'http://maps.google.com/mapfiles/ms/icons/green.png'
+    },
+    restaurantes: {
+        icon: 'http://maps.google.com/mapfiles/ms/icons/yellow.png'
+    },
+    museus: {
+        icon: 'http://maps.google.com/mapfiles/ms/icons/purple.png'
+    }
 };
 
-function myMap() {
-  window.bounds = new google.maps.LatLngBounds();
-  var mapCanvas = document.getElementById("gmap-list");
-  var mapOptions = {
-    center: new google.maps.LatLng(35.9120,-79.0537,7),
-    scaleControl: true,
-    scrollwheel: true,
-    mapTypeControl: false,
-    overviewMapControl: false,
-    rotateControl: true,
-    mapTypeId: 'satellite',
-    styles: styles
-  };
-  window.googleMap = new google.maps.Map(mapCanvas, mapOptions);
+var markerGroups = {
+    "K-Pop": [],
+        "Rock n Roll": [],
+        "restaurantes": [],
+        "hotel": []
+};
+    var map = new google.maps.Map(document.getElementById("gmap-list"), {
+        center: new google.maps.LatLng(35.9120,-79.0537),
+        zoom: 20,
+        mapTypeId: 'satellite'
+    });
+    var infoWindow = new google.maps.InfoWindow();
 
-  // Loop through our array of markers & place each one on Google map  
-  for( i = 0; i < markers.length; i++ ) {
-    var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
-    bounds.extend(position);
-    markers[i] = new google.maps.Marker({
-        position: position,
-        map: googleMap,
-        title: markers[i][0],
-        label: markers[i][0],
-        icon: {
-          url: 'http://maps.google.com/mapfiles/ms/icons/yellow-dot.png', // yellow markers
-        labelOrigin: new google.maps.Point(markers[i][3], markers[i][4]) // label condition (remove or keep?)
-        },
-        label: {
-          text: markers[i][0],
-          color: 'white',
-          fontSize: '12px'
+    map.set('styles', [{
+        zoomControl: false
+    }, {
+        featureType: "road.highway",
+        elementType: "geometry.fill",
+        stylers: [{
+            color: "#ffd986"
+        }]
+    }, {
+        featureType: "road.arterial",
+        elementType: "geometry.fill",
+        stylers: [{
+            color: "#9e574f"
+        }]
+    }, {
+        featureType: "road.local",
+        elementType: "geometry.fill",
+        stylers: [{
+            color: "#d0cbc0"
+        }, {
+            weight: 1.1
         }
-    });
 
-    markers[i].index = i;
+        ]
+    }, {
+        featureType: 'road',
+        elementType: 'labels',
+        stylers: [{
+            saturation: -100
+        }]
+    }, {
+        featureType: 'landscape',
+        elementType: 'geometry',
+        stylers: [{
+            hue: '#ffff00'
+        }, {
+            gamma: 1.4
+        }, {
+            saturation: 82
+        }, {
+            lightness: 96
+        }]
+    }, {
+        featureType: 'poi.school',
+        elementType: 'geometry',
+        stylers: [{
+            hue: '#fff700'
+        }, {
+            lightness: -15
+        }, {
+            saturation: 99
+        }]
+    }]);
 
-  var infoWindow = new google.maps.InfoWindow(), marker, i;
-  // Allow each marker to have an info window on click
-  google.maps.event.addListener(markers[i], 'click', (function(marker, i) {
-    return function() {
-      infoWindow.setContent(infoWindowContent[i][0]);
-      infoWindow.open(map, markers[i]);
+    //         downloadUrl("markers.xml", function (data) {
+    var xml = xmlParse('<markers><marker name="Castelo" address="Rua da Condessa de Valença" lat="35.9140" lng="-79.0537" type="monumento" /><marker name="Anta 1 de Tourais" address="Estrada Nacional 114" lat="38.64260059929888" lng="-8.159376865959189" type="monumento" /><marker name="Hotel da Ameira" address="Herdade da Ameira" lat="38.64109640475479" lng="-8.180432206726096" type="hotel" /><marker name="Hotel Montemor" address="Avenida Gago Coutinho 8, 7050-248 Montemor-o-Novo" lat="38.64925541964039" lng="-8.216489625644726" type="hotel" /><marker name="Restaurante Monte Alentejano" address="Av. Gago Coutinho 8" lat="38.6492329" lng="-8.216665" type="restaurantes" /><marker name="Restaurante A Ribeira" address="Rua de São Domingos" lat="38.6347498199708" lng="-8.206468892765088" type="restaurantes" /><marker name="Núcleo Museológico do Convento de S. Domingos" address="" lat="38.643139" lng="-8.212732" type="museus" /><marker name="Centro Interpretativo do Castelo de Montemor-o-Novo" address="Rua Condessa de Valença" lat="38.64258748216167" lng="-8.21467108793263" type="museus" /></markers>');
+    // var xml = data.responseXML;
+    var markers = xml.documentElement.getElementsByTagName("marker");
+    for (var i = 0; i < markers.length; i++) {
+        var name = markers[i].getAttribute("name");
+        var address = markers[i].getAttribute("address");
+        var type = markers[i].getAttribute("type");
+
+        var point = new google.maps.LatLng(
+        parseFloat(markers[i].getAttribute("lat")),
+        parseFloat(markers[i].getAttribute("lng")));
+        var html = "<b>" + name + "</b> <br/>" + address;
+        // var icon = customIcons[type] || {};
+        var marker = createMarker(point, name, address, type, map);
+        bindInfoWindow(marker, map, infoWindow, html);
     }
-  })(marker, i));
-  // Local Government Elections Workshop
-  google.maps.event.addListener(infoWindow, 'domready', function(marker, i){
-    $("#" + markers[0].title.replace(/ +/g, '-').toLowerCase()).on("click", function(e) { // click-me ID should be different for every infoWindow / iterate through markers
-      $('.mdl-mini-footer').fadeTo('slow', 1);
-      var local = new google.maps.StreetViewPanorama(
-        document.getElementById(markers[0].title.replace(/ +/g, '-').toLowerCase() + '-pano'), {
-        position: {lat: markers[0].position.lat(), lng: markers[0].position.lng()}, 
-        pov: {
-            heading: 66,
-            pitch: 10
-        },
-        disableDefaultUI: true,
-        enableCloseButton: false
-      });
-      $('#close, .carousel').fadeIn(1200);
-      imageRetrieval('apconference030610', 0);
-      $('#close').one('click', function(){
-        backToMap(0, 88);
-      });
-
+    // });
+function createMarker(point, name, address, type, map) {
+    var icon = customIcons[type] || {};
+    var marker = new google.maps.Marker({
+        map: map,
+        position: point,
+        icon: icon.icon,
+        // shadow: icon.shadow,
+        type: type
     });
-  });
-
-  // Orlando East March
-  google.maps.event.addListener(infoWindow, 'domready', function(marker, i){
-    // Reference to the DIV that wraps the bottom of infowindow
-    var iwOuter = $('.gm-style-iw');
-    var iwBackground = iwOuter.prev();
-    // Removes background shadow DIV
-    iwBackground.children(':nth-child(2)').css({'display' : 'none'});
-    // Removes white background DIV
-    iwBackground.children(':nth-child(4)').css({'display' : 'none'});
-    // Changes the desired tail shadow color.
-    iwBackground.children(':nth-child(3)').find('div').children().css({'border':'1px solid #000', 'background': 'rgba(0,0,0,0.45)', 'box-shadow': 'rgba(0,0,0,0.45) 0px 1px 6px', 'z-index' : '1'});
-    // Reference to the div that groups the close button elements.
-    var iwCloseBtn = iwOuter.next();
-    iwOuter.css({background: 'rgba(0,0,0,0.45)', color: '#fff'});
-    // Apply the desired effect to the close button
-    iwCloseBtn.css({opacity: '1', width: '23px', height: '23px', right: '38px', top: '3px', border: '5px solid rgba(0,0,0,0.45)', 'border-radius': '13px', 'box-shadow': '0 0 5px #3990B9'});
-    // If the content of infowindow not exceed the set maximum height, then the gradient is removed.
-    if($('.iw-content').height() < 140){
-      $('.iw-bottom-gradient').css({display: 'none'});
-    }
-    iwCloseBtn.mouseout(function(){
-      $(this).css({opacity: '1'});
-    });
-
-    $("#" + markers[1].title.replace(/ +/g, '-').toLowerCase()).on("click", function(e) { // click-me ID should be different for every infoWindow / iterate through markers
-      $('.mdl-mini-footer').fadeTo('slow', 1);
-      var $carousel = $('.carousel').flickity().flickity('next').flickity( 'select', 2 );
-      var orlando = new google.maps.StreetViewPanorama(
-        document.getElementById(markers[1].title.replace(/ +/g, '-').toLowerCase() + '-pano'), {
-        position: {lat: markers[1].position.lat(), lng: markers[1].position.lng()}, 
-        pov: {
-            heading: 34,
-            pitch: 10
-        },
-        disableDefaultUI: true,
-        enableCloseButton: false
-      });
-      $('#close, .carousel').fadeIn(1200);
-      imageRetrieval('orlandoeastmarch111309', 1);
-      $('#close').one('click', function(){
-        backToMap(1, 250);
-      });
-
-    });
-  });
-
-  googleMap.setZoom(20);
+    if (!markerGroups[type]) markerGroups[type] = [];
+    markerGroups[type].push(marker);
+    var html = "<b>" + name + "</b> <br/>" + address;
+    bindInfoWindow(marker, map, infoWindow, html);
+    return marker;
   }
-  // SCRR  and SECC left off for now, pending media
-  googleMap.overlayMapTypes.insertAt(
-      0, new CoordMapType(new google.maps.Size(256, 256))
-  );
 }
+
+function toggleGroup(type) {
+    for (var i = 0; i < markerGroups[type].length; i++) {
+        var marker = markerGroups[type][i];
+        if (!marker.getVisible()) {
+            marker.setVisible(true);
+        } else {
+            marker.setVisible(false);
+        }
+    }
+}
+
+function bindInfoWindow(marker, map, infoWindow, html) {
+    google.maps.event.addListener(marker, 'click', function () {
+        infoWindow.setContent(html);
+        infoWindow.open(map, marker);
+
+    });
+}
+
+function downloadUrl(url, callback) {
+    var request = window.ActiveXObject ? new ActiveXObject('Microsoft.XMLHTTP') : new XMLHttpRequest();
+
+    request.onreadystatechange = function () {
+        if (request.readyState == 4) {
+            request.onreadystatechange = doNothing;
+            callback(request, request.status);
+        }
+    };
+
+    request.open('GET', url, true);
+    request.send(null);
+}
+
+function doNothing() {}
+google.maps.event.addDomListener(window, 'load', load);
