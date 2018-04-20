@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Media</title>
+    <link href="https://blackrockdigital.github.io/startbootstrap-simple-sidebar/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/slick.css">
+	<link rel="stylesheet" href="/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.0/slick-theme.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.0/slick.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" rel="stylesheet"/>
+<!-- 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'> -->
+	<link rel="stylesheet" href="/css/scroll.css" rel="stylesheet">
+	<link rel="stylesheet" href="/css/leaflet.label.css" />
+	<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.css">
+	<link rel="stylesheet" href="/css/bootstrap.min.css" />
+	<link rel="stylesheet" type="text/css" href="https://blackrockdigital.github.io/startbootstrap-simple-sidebar/css/simple-sidebar.css" />
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.js"></script>
+</head>
+
+<body class="media-body">
+
+    <div id="wrapper" class="toggled">
+
+        <!-- Sidebar -->
+        <div id="sidebar-wrapper">
+            <a href="#" onclick="history.back();" class="btn back"></a>
+            <h2 class="title">{{ title }}</h2>
+			<div id="container" class="{{title}} grid">
+                <div class="grid-sizer"></div>
+			  {{> mediaImagesThumb}}
+			</div>
+		</div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <div class="container-fluid">
+<!--                 <h1>{{size}} Show</h1> -->
+                <div class="slick-show">
+					{{> mediaImagesFull}}
+  				</div>
+  				<div class="gallery-pane-toggle-button-container">
+  					<button class="gallery-pane-toggle-button" id="menu-toggle"><a href="#menu-toggle"></a></button>
+  				</div>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+	<script type="text/javascript" src="/js/isotope.pkgd.min.js"></script>
+    <script type="text/javascript" src="https://masonry.desandro.com/masonry.pkgd.js"></script>
+	<script type="text/javascript" src="/js/slick.js"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/js/media.js"></script>
+    <script type="text/javascript" src="/js/centerImage.js"></script>
+</body>
+</html>
