@@ -20,7 +20,7 @@ function myMap() {
   window.bounds = new google.maps.LatLngBounds();
   var mapCanvas = document.getElementById("gmap-list");
   var mapOptions = {
-    center: new google.maps.LatLng(-26.1047789,28.002457199999993,13),
+    center: new google.maps.LatLng(35.91449,-79.05273,6),
     scaleControl: false,
     scrollwheel: false,
     mapTypeControl: false,
