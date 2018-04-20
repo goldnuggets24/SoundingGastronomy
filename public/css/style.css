@@ -50,6 +50,8 @@ h3 {
   font-family: 'Open Sans', sans-serif;
   display: none;
 }
+
+#h1_2 {visibility: visible !important;}
   
  #map, #gmap-list {
 /*    float: left;*/
@@ -69,6 +71,11 @@ input {
   margin: 5px 0;
   clear: left;
   float: left;
+}
+
+label {
+  margin-left: 5px;
+  margin-bottom: 0;
 }
  
 #modal-map, 
