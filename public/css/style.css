@@ -31,6 +31,10 @@ h3 {
 	padding: 10px;
   visibility: visible !important;
 }
+
+b {
+  line-height: 18px;
+}
   
 #controls {
 	width: 140px; 
