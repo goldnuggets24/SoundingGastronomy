@@ -49,10 +49,14 @@
   Key to navigate to different categories of markers.
   </div><br>
 <ul class="form">
-            <input id="monumentoCheckbox" type="checkbox" onclick="toggleGroup('monumento')" checked="checked"><label style="color:#6991fd;">K-Pop</label></input>
-            <input id="museusCheckbox" type="checkbox" onclick="toggleGroup('museus')" checked="checked"><label>Rock</label></input>
-            <input id="restaurantesCheckbox" type="checkbox" onclick="toggleGroup('restaurantes')" checked="checked"><label style="color:#fef568;">Pop</label></input>
-            <input id="hotelCheckbox" type="checkbox" onclick="toggleGroup('hotel')" checked="checked"><label style="color:#00e64d;">Country</label></input>
+            <input id="rockCheckbox" type="checkbox" onclick="toggleGroup('rock')" checked="checked"><label style="color:#6991fd;">Rock</label></input>
+            <input id="jazzCheckbox" type="checkbox" onclick="toggleGroup('jazz')" checked="checked"><label style="color:#6991fd;">Jazz</label></input>
+            <input id="electronicCheckbox" type="checkbox" onclick="toggleGroup('electronic')" checked="checked"><label style="color:#6991fd;">Electronic</label></input>
+            <input id="popCheckbox" type="checkbox" onclick="toggleGroup('pop')" checked="checked"><label style="color:black;">Pop</label></input>
+            <input id="hip_hopCheckbox" type="checkbox" onclick="toggleGroup('hip_hop')" checked="checked"><label style="color:#fef568;">Hip Hop</label></input>
+            <input id="discoCheckbox" type="checkbox" onclick="toggleGroup('disco')" checked="checked"><label style="color:#00e64d;">Disco</label></input>
+            <input id="world_musicCheckbox" type="checkbox" onclick="toggleGroup('world_music')" checked="checked"><label style="color:#00e64d;">World Music</label></input>
+            <input id="indieCheckbox" type="checkbox" onclick="toggleGroup('indie')" checked="checked"><label style="color:#00e64d;">Indie</label></input>
         </ul>
 
   <div id='h1_3' style="float: left; top:152px"><span style='color:yellow'>City : </span> Franklin Street, <br>Chapel Hill</div>
@@ -98,25 +102,41 @@
 }
 var infoWindow = new google.maps.InfoWindow();
 var customIcons = {
-    monumento: {
+    jazz: {
         icon: 'http://maps.google.com/mapfiles/ms/icons/blue.png'
     },
-    hotel: {
+    pop: {
         icon: 'http://maps.google.com/mapfiles/ms/icons/green.png'
     },
-    restaurantes: {
+    disco: {
         icon: 'http://maps.google.com/mapfiles/ms/icons/yellow.png'
     },
-    museus: {
+    indie: {
         icon: 'http://maps.google.com/mapfiles/ms/icons/purple.png'
-    }
+    },
+    rock: {
+        icon: 'http://maps.google.com/mapfiles/ms/icons/red.png'
+    },
+    world_music: {
+        icon: 'http://maps.google.com/mapfiles/ms/icons/orange.png'
+    },
+    hip_hop: {
+        icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+    },
+    electronic: {
+        icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
+    },
 };
 
 var markerGroups = {
-    "museus": [],
-        "monumentos": [],
-        "restaurantes": [],
-        "hotel": []
+    "jazz": [],
+    "pop": [],
+    "world_music": [],
+    "hip_hop": [],
+    "indie": [],
+    "disco": [],
+    "rock": [],
+    "electronic": []
 };
 
 function load() {
@@ -183,7 +203,7 @@ function load() {
         }]
     }]);
 
-    var xml = xmlParse('<markers><marker name="Sugarland" address="Bakery" lat="35.914" lng="-79.0532" music="Flume, \'Insane\'" year="2012" type="Electronic" notes="The song was played from spotify, and was a personal choice made by the cashier who said this was his favorite song." /><marker name="Carolina Coffee Shop" address="American Restaurant" lat="35.914" lng="-79.0540" music="Commodores, \'Easy\'" year="1977" type="Jazz, R&amp;B/Soul,Funk" notes="" /><marker name="Asia Café" address="Chinese Restaurant" lat="35.914" lng="-79.0539" music="KT Tunstall,\'Other Side of the World\'" year="2004" type="Pop" notes="Someone was playing live guitar outsite the restaurant." /><marker name="TOPO" address="Brew Pub, American Restaurant" lat="35.914" lng="-79.0538" music="KC and the Sunshine Band, \'Boogie Shoes\'" year="1975" type="Disco" notes="" /><marker name="Starbucks" address="Coffee Shop" lat="35.914" lng="-8.216665" music="Melainie De Biaslo, \'Afro Blue\'" year="2017" type="Indie" notes="" /><marker name="Sup Dogs" address="Hot Dog Restaurant" lat="35.914" lng="-8.206468893" music="Rock" year="2012" type="Rock" notes="" /><marker name="Smoothie King" address="Juice Shop" lat="35.914" lng="-79.0537" music="Gipsy Kings, \'Love &amp; Liberté\'" year="1993" type="World Music" notes="" /><marker name="Waffle House" address="American Restaurant" lat="35.914" lng="-79.05323" music="Michael Jackson, \'Man in the Mirror\'" year="1987" type="Pop" notes="No music was playing, but there was a Jukebox and the top played was MJ\'s \'Man in the Mirror\'." /><marker name="Cold Stone Creamery" address="Ice Cream Shop" lat="35.914" lng="-79.0538" music="Jay Chou,\'Qing Hua Ci\'" year="2008" type="" notes="No music was playing, probably because it was limited dine-in time of the day. Chatted with the waiter, and he said that sometimes he would play music from his phone, including Chinese pop songs (C-Pop) from singers like JJ Lin and Jay Chou." /><marker name="Shanghai Dumpling" address="Chinese Restaurant" lat="35.914" lng="-79.0541" music="" year="" type="" notes="" /><marker name="[B]SKI\'S" address="Restaurant (wraps)" lat="35.914" lng="-79.0535" music="Greg Holden,\'Hold on Tight\'" year="2015" type="Pop" notes="" /><marker name="Hibachi &amp; Co." address="Asian Fusion Restaurant" lat="35.914" lng="-79.0533" music="Soundgarden, \'Fell on Black Days\'" year="1994" type="Rock" notes="The music was played from spotify on the manager\'s phone." /><marker name="Roots Bakery, Bistro &amp; Bar" address="Central American Restaurant" lat="35.914" lng="-79.0530" music="Blondie, \'Call Me\'" year="1980" type="Rock" notes="" /><marker name="Ms. Mong" address="Asian Fusion Restaurant" lat="35.914" lng="-79.0529" music="" year="" type="" notes="No music was playing. The TV was on." /><marker name="GRK YEERO" address="Greek Restaurant" lat="35.914" lng="-79.05345" music="Global Journey Audio,\'Lagoon of Signs\'" year="2013" type="World Music" notes="" /><marker name="Four Corners" address="Sports Bar, American Restaurant" lat="35.914" lng="-79.0530" music="Milky Chance, Fairytale\'" year="2013" type="Pop" notes="" /><marker name="Time-Out" address="American Restaurant (Southern)" lat="35.914" lng="-79.0547" music="" year="" type="" notes="No music was playing. TV was on, playing sports." /><marker name="Linda\'s" address="American Restaurant" lat="35.914" lng="-79.0537" music="Beastie Boys, \'Son of Neckbone\'" year="1994" type="Hip-Hop" notes="" /><marker name="Bonchon" address="Korean Restaurant (Fried Chicken)" lat="35.914" lng="-79.0538" music="SNSD, \'Genie 2010\'" type="World Music (K-Pop)" notes="" /></markers>');
+    var xml = xmlParse('<markers><marker name="Sugarland" address="Bakery" lat="35.914" lng="-79.0532" music="Flume, \'Insane\'" year="2012" type="electronic" notes="The song was played from spotify, and was a personal choice made by the cashier who said this was his favorite song." /><marker name="Carolina Coffee Shop" address="American Restaurant" lat="35.914" lng="-79.0540" music="Commodores, \'Easy\'" year="1977" type="jazz" notes="" /><marker name="Asia Café" address="Chinese Restaurant" lat="35.914" lng="-79.0539" music="KT Tunstall,\'Other Side of the World\'" year="2004" type="pop" notes="Someone was playing live guitar outsite the restaurant." /><marker name="TOPO" address="Brew Pub, American Restaurant" lat="35.914" lng="-79.05475" music="KC and the Sunshine Band, \'Boogie Shoes\'" year="1975" type="disco" notes="" /><marker name="Starbucks" address="Coffee Shop" lat="35.914" lng="-79.05312" music="Melainie De Biaslo, \'Afro Blue\'" year="2017" type="indie" notes="" /><marker name="Sup Dogs" address="Hot Dog Restaurant" lat="35.914" lng="-79.05321" music="Kongos, \'Come with Me Now\'" year="2012" type="rock" notes="" /><marker name="Smoothie King" address="Juice Shop" lat="35.914" lng="-79.05324" music="Gipsy Kings, \'Love &amp; Liberté\'" year="1993" type="world_music" notes="" /><marker name="Waffle House" address="American Restaurant" lat="35.914" lng="-79.05323" music="Michael Jackson, \'Man in the Mirror\'" year="1987" type="pop" notes="No music was playing, but there was a Jukebox and the top played was MJ\'s \'Man in the Mirror\'." /><marker name="Cold Stone Creamery" address="Ice Cream Shop" lat="35.914" lng="-79.05421" music="Jay Chou,\'Qing Hua Ci\'" year="2008" type="" notes="No music was playing, probably because it was limited dine-in time of the day. Chatted with the waiter, and he said that sometimes he would play music from his phone, including Chinese pop songs (C-Pop) from singers like JJ Lin and Jay Chou." /><marker name="Shanghai Dumpling" address="Chinese Restaurant" lat="35.914" lng="-79.0541" music="" year="" type="" notes="" /><marker name="[B]SKI\'S" address="Restaurant (wraps)" lat="35.914" lng="-79.0535" music="Greg Holden,\'Hold on Tight\'" year="2015" type="pop" notes="" /><marker name="Hibachi &amp; Co." address="Asian Fusion Restaurant" lat="35.914" lng="-79.0533" music="Soundgarden, \'Fell on Black Days\'" year="1994" type="rock" notes="The music was played from spotify on the manager\'s phone." /><marker name="Roots Bakery, Bistro &amp; Bar" address="Central American Restaurant" lat="35.914" lng="-79.05328" music="Blondie, \'Call Me\'" year="1980" type="rock" notes="" /><marker name="Ms. Mong" address="Asian Fusion Restaurant" lat="35.914" lng="-79.0529" music="" year="" type="" notes="No music was playing. The TV was on." /><marker name="GRK YEERO" address="Greek Restaurant" lat="35.914" lng="-79.05345" music="Global Journey Audio,\'Lagoon of Signs\'" year="2013" type="world_music" notes="" /><marker name="Four Corners" address="Sports Bar, American Restaurant" lat="35.914" lng="-79.0530" music="Milky Chance, Fairytale\'" year="2013" type="pop" notes="" /><marker name="Time-Out" address="American Restaurant (Southern)" lat="35.914" lng="-79.0547" music="" year="" type="" notes="No music was playing. TV was on, playing sports." /><marker name="Linda\'s" address="American Restaurant" lat="35.914" lng="-79.0537" music="Beastie Boys, \'Son of Neckbone\'" year="1994" type="hip_hop" notes="" /><marker name="Bonchon" address="Korean Restaurant (Fried Chicken)" lat="35.914" lng="-79.0538" music="SNSD, \'Genie 2010\'" type="world_music" notes="" /></markers>');
     // var xml = data.responseXML;
     embeds = ['<iframe width="560" height="315" src="https://www.youtube.com/embed/PyI-RjfE0ks" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>','<iframe width="560" height="315" src="https://www.youtube.com/embed/y4Ccm-kUDSM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'];
 
