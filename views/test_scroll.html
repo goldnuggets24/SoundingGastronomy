@@ -49,10 +49,10 @@
   Key to navigate to different categories of markers.
   </div><br>
 <ul class="form">
-            <input id="monumentoCheckbox" type="checkbox" onclick="toggleGroup('monumento')" checked="checked"><label>K-Pop</label></input>
+            <input id="monumentoCheckbox" type="checkbox" onclick="toggleGroup('monumento')" checked="checked"><label style="color:#6991fd;">K-Pop</label></input>
             <input id="museusCheckbox" type="checkbox" onclick="toggleGroup('museus')" checked="checked"><label>Rock</label></input>
-            <input id="restaurantesCheckbox" type="checkbox" onclick="toggleGroup('restaurantes')" checked="checked"><label>Pop</label></input>
-            <input id="hotelCheckbox" type="checkbox" onclick="toggleGroup('hotel')" checked="checked"><label>Country</label></input>
+            <input id="restaurantesCheckbox" type="checkbox" onclick="toggleGroup('restaurantes')" checked="checked"><label style="color:#fef568;">Pop</label></input>
+            <input id="hotelCheckbox" type="checkbox" onclick="toggleGroup('hotel')" checked="checked"><label style="color:#00e64d;">Country</label></input>
         </ul>
 
   <div id='h1_3' style="float: left; top:152px"><span style='color:yellow'>City : </span> Franklin Street, <br>Chapel Hill</div>
@@ -70,7 +70,6 @@
 
 <!-- <img id="southAftica" src="south_africa3.png" width="180px" style="position: fixed; left:2.5%; bottom: 80px"> -->
 
-<h4 id='scroll' style="color: #fff; bottom: -5px;">SCROLL TO NAVIGATE</h4>
 <div id='close' class='btn button'><a href='#'>Close</a></div>
 <h2 id='title'>#</h2>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.0.47/jquery.fancybox.min.css" />
@@ -184,7 +183,7 @@ function load() {
         }]
     }]);
 
-    var xml = xmlParse('<markers><marker name="Starbucks" address="sgfd" lat="35.9140" lng="-79.0537" type="restaurantes" /><marker name="Monkeys" address="Estrada Nacional 114" lat="35.9140" lng="-79.0538" type="monumento" /><marker name="Hotel da Ameira" address="Herdade da Ameira" lat="38.64109640475479" lng="-8.180432206726096" type="hotel" /><marker name="Hotel Montemor" address="Avenida Gago Coutinho 8, 7050-248 Montemor-o-Novo" lat="38.64925541964039" lng="-8.216489625644726" type="hotel" /><marker name="Restaurante Monte Alentejano" address="Av. Gago Coutinho 8" lat="38.6492329" lng="-8.216665" type="restaurantes" /><marker name="Restaurante A Ribeira" address="Rua de São Domingos" lat="38.6347498199708" lng="-8.206468892765088" type="restaurantes" /><marker name="Núcleo Museológico do Convento de S. Domingos" address="" lat="38.643139" lng="-8.212732" type="museus" /><marker name="Centro Interpretativo do Castelo de Montemor-o-Novo" address="Rua Condessa de Valença" lat="38.64258748216167" lng="-8.21467108793263" type="museus" /></markers>');
+    var xml = xmlParse('<markers><marker name="Starbucks" address="sgfd" lat="35.9140" lng="-79.0537" type="restaurantes" /><marker name="Monkeys" address="Estrada Nacional 114" lat="35.9140" lng="-79.0538" type="monumento" /><marker name="Hotel da Ameira" address="Herdade da Ameira" lat="38.64109640475479" lng="-8.180432206726096" type="hotel" /><marker name="Hotel Montemor" address="Avenida Gago Coutinho 8, 7050-248 Montemor-o-Novo" lat="35.9140" lng="-79.0535" type="hotel" /><marker name="Restaurante Monte Alentejano" address="Av. Gago Coutinho 8" lat="38.6492329" lng="-8.216665" type="restaurantes" /><marker name="Restaurante A Ribeira" address="Rua de São Domingos" lat="38.6347498199708" lng="-8.206468892765088" type="restaurantes" /><marker name="Núcleo Museológico do Convento de S. Domingos" address="" lat="38.643139" lng="-8.212732" type="museus" /><marker name="Centro Interpretativo do Castelo de Montemor-o-Novo" address="Rua Condessa de Valença" lat="38.64258748216167" lng="-8.21467108793263" type="museus" /></markers>');
     // var xml = data.responseXML;
     embeds = ['<iframe width="560" height="315" src="https://www.youtube.com/embed/PyI-RjfE0ks" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>','<iframe width="560" height="315" src="https://www.youtube.com/embed/y4Ccm-kUDSM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>'];
 
