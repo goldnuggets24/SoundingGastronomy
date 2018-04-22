@@ -142,8 +142,9 @@ var markerGroups = {
 
 function load() {
     var map = new google.maps.Map(document.getElementById("gmap-list"), {
-        center: new google.maps.LatLng(35.9120,-79.0537),
+        center: new google.maps.LatLng(35.9140,-79.054389),
         zoom: 20,
+        zoomControl: true,
         mapTypeId: 'satellite'
     });
     var infoWindow = new google.maps.InfoWindow();
@@ -151,7 +152,7 @@ function load() {
 
 
     map.set('styles', [{
-        zoomControl: false
+        zoomControl: true
     }, {
         featureType: "road.highway",
         elementType: "geometry.fill",
@@ -260,7 +261,6 @@ function bindInfoWindow(marker, map, infoWindow, html) {
     google.maps.event.addListener(marker, 'click', function () {
         infoWindow.setContent(html);
         infoWindow.open(map, marker);
-
     });
 }
 

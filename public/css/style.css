@@ -62,10 +62,8 @@ b {
 #h1_2 {visibility: visible !important;}
   
  #map, #gmap-list {
-/*    float: left;*/
-    height: 3500px;
+    height: 660px;
     width: 100%;
-/*    overflow: visible;*/
 }
 
 .form {
